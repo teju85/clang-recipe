@@ -11,29 +11,53 @@ source:
   - url: http://releases.llvm.org/{{ version }}/cfe-{{ version }}.src.tar.xz
     folder: llvm/tools/clang
   - url: http://releases.llvm.org/{{ version }}/clang-tools-extra-{{ version }}.src.tar.xz
-    folder: llvm/tools/clang/tools/clang-tools-extra
+    folder: llvm/tools/clang/tools/extra
+  - path: setup.py
 
 build:
   number: 0
 
 requirements:
   build:
-    - ca-certificates
-    - cmake
-    - make
     - python
-    - zlib
   host:
     - python
   run:
     - python
 
+outputs:
+  - name: libclang
+    script: build_lib.sh
+    requirements:
+      build:
+        - ca-certificates
+        - cmake
+        - make
+        - python
+        - zlib
+        - {{ compiler('cxx') }}
+    test:
+      commands:
+        - clang-format --version
+        - clang-tidy --version
+    about:
+      summary: "Clang library and format/tidy packages"
+  - name: clang
+    script: build.sh
+    requirements:
+      run:
+        - {{ pin_subpackage('libclang', exact=True) }}
+    test:
+      imports:
+        - clang.cindex
+    about:
+      summary: "Python bindings for clang library"
+
 about:
-  home: https://github.com/teju85/conda-clang
+  home: http://llvm.org/
   license: Apache-2.0
-  summary: Clang package for conda
-  doc_url: https://github.com/teju85/conda-clang
-  dev_url: https://github.com/teju85/conda-clang
+  doc_url: http://llvm.org/
+  dev_url: http://llvm.org/
 
 extra:
   recipe-maintainers:
