@@ -1,0 +1,40 @@
+{% set name = "clang" %}
+{% set version = "8.0.0" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  - url: http://releases.llvm.org/{{ version }}/llvm-{{ version }}.src.tar.xz
+    folder: llvm
+  - url: http://releases.llvm.org/{{ version }}/cfe-{{ version }}.src.tar.xz
+    folder: llvm/tools/clang
+  - url: http://releases.llvm.org/{{ version }}/clang-tools-extra-{{ version }}.src.tar.xz
+    folder: llvm/tools/clang/tools/clang-tools-extra
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ca-certificates
+    - cmake
+    - make
+    - python
+    - zlib
+  host:
+    - python
+  run:
+    - python
+
+about:
+  home: https://github.com/teju85/conda-clang
+  license: Apache-2.0
+  summary: Clang package for conda
+  doc_url: https://github.com/teju85/conda-clang
+  dev_url: https://github.com/teju85/conda-clang
+
+extra:
+  recipe-maintainers:
+    - teju85
