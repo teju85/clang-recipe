@@ -14,3 +14,8 @@ docker build -t conda:dev .
 docker run --rm -it conda:dev /bin/bash
 inside-container# conda build recipe
 ```
+
+# Downloading built recipes
+```bash
+conda install -c teju85 clang
+```
