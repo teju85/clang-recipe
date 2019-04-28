@@ -4,7 +4,7 @@ and also the python wrapper for clang library.
 
 # Downloading built recipes
 ```bash
-conda install -c teju85 clang
+conda install -c teju85 clang libclang
 ```
 
 # Building my own recipe?
@@ -21,8 +21,9 @@ git clone https://github.com/teju85/clang-recipe
 cd clang-recipe
 docker build -t conda:dev .
 docker run --rm -it conda:dev /bin/bash
-inside-container# conda build recipe
 inside-container# anaconda login
+inside-container# conda build lib
 inside-container# anaconda upload /path/to/libclang/package.tar.gz
+inside-container# conda build py
 inside-container# anaconda upload /path/to/clang/package.tar.gz
 ```

@@ -18,9 +18,10 @@ RUN curl -o /opt/miniconda.sh \
 
 ENV PATH /opt/conda/bin:${PATH}
 
-RUN conda install  -c anaconda \
+RUN conda install -c anaconda \
+        anaconda-client \
         conda-build \
-        anaconda-client && \
+        conda-verify && \
     conda clean -ya
 
 COPY . /opt/clang-recipes

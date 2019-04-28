@@ -1,0 +1,38 @@
+{% set name = "clang" %}
+{% set version = "8.0.0" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  - url: http://releases.llvm.org/{{ version }}/cfe-{{ version }}.src.tar.xz
+    folder: cfe
+  - path: setup.py
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - python
+    - pip
+  host:
+    - python
+  run:
+    - python
+
+test:
+  imports:
+    - clang.cindex
+
+about:
+  home: http://llvm.org/
+  license: Apache-2.0
+  doc_url: http://llvm.org/
+  dev_url: http://llvm.org/
+  summary: "Python bindings for clang library"
+
+extra:
+  recipe-maintainers:
+    - teju85
