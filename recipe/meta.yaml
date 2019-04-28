@@ -43,9 +43,13 @@ outputs:
     about:
       summary: "Clang library and format/tidy packages"
   - name: clang
-    script: build.sh
+    script: build_py.sh
     requirements:
+      host:
+       - python
+       - pip
       run:
+        - python
         - {{ pin_subpackage('libclang', exact=True) }}
     test:
       imports:
