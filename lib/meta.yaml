@@ -15,19 +15,15 @@ source:
 
 build:
   number: 0
+  noarch: generic
 
 requirements:
   build:
     - ca-certificates
     - cmake
     - make
-    - python
     - zlib
     - {{ compiler('cxx') }}
-  host:
-    - python
-  run:
-    - python
 
 test:
   commands:

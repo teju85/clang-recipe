@@ -27,3 +27,6 @@ inside-container# anaconda upload /path/to/libclang/package.tar.gz
 inside-container# conda build py
 inside-container# anaconda upload /path/to/clang/package.tar.gz
 ```
+
+# License
+[WTFPL](http://www.wtfpl.net/txt/copying/)
